@@ -4,7 +4,7 @@ title: '#4471 · three problems, not one'
 owner: szwedol
 status: draft
 reviewed: 2026-10-29
-signature: szwedol
+signature: 'v1.eyJzdWIiOiIyNDE0IiwiYXVkIjoiY2hhbGxlbmdlOndoYXQtaXQtc2hvd3MiLCJpYXQiOjE3OTMyNjY2OTYsImV4cCI6MTc5MzM1MzA5Nn0._R509x2RJ-KYVsBuJR1QiuhmMJNO3da3LiF3wipFXsU'
 ---
 
 <script>
