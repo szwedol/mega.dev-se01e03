@@ -20,13 +20,20 @@ signature: szwedol
   };
 </script>
 
-[#4471](/kb/incidents/4471) is marked known: one issue, one fix queued. Read report by report, it
-holds three problems. The queued parser fix closes only the first one.
+[#4471](/kb/incidents/4471) was marked known: one issue, one fix queued. Read report by report, it
+holds three problems. Engineering closed #4471 on 5 October with two of them settled.
 
 <ProblemTable ticket={4471} {issues} />
 
+| problem | since #4471 closed | issue |
+| --- | --- | --- |
+| `parser` | fixed: `fix(dates): parse dd/mm for eu locales` | [#1](https://github.com/szwedol/mega.dev-se01e03/issues/1) closed |
+| `hint` | won't fix: booking-v3 form retired | [#2](https://github.com/szwedol/mega.dev-se01e03/issues/2) closed, not planned |
+| `one-day move` | not in the engineering update | [#3](https://github.com/szwedol/mega.dev-se01e03/issues/3) **open** |
+
 <Callout kind="warn">
-Two of the three have no fix queued. Keep #4471 open until each issue below is fixed on its own.
+#4471 is closed, but one problem in it is not. Dates that move by one day across time zones were
+never part of the parser fix. Reports like these still belong to #3, not to #4471.
 </Callout>
 
 ## The problems
