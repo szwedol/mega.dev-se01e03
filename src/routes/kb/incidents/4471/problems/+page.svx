@@ -1,0 +1,64 @@
+---
+layout: runbook
+title: '#4471 · three problems, not one'
+owner: szwedol
+status: draft
+reviewed: 2026-10-29
+signature: szwedol
+---
+
+<script>
+  import ProblemTable from '#lib/kb/ProblemTable.svelte';
+  import Callout from '#lib/kb/Callout.svelte';
+  import RenderStamp from '#lib/kb/RenderStamp.svelte';
+
+  const ISSUES = 'https://github.com/szwedol/mega.dev-se01e03/issues';
+  const issues = {
+    parser: `${ISSUES}/1`,
+    hint: `${ISSUES}/2`,
+    'one-day move': `${ISSUES}/3`,
+  };
+</script>
+
+[#4471](/kb/incidents/4471) is marked known: one issue, one fix queued. Read report by report, it
+holds three problems. The queued parser fix closes only the first one.
+
+<ProblemTable ticket={4471} {issues} />
+
+<Callout kind="warn">
+Two of the three have no fix queued. Keep #4471 open until each issue below is fixed on its own.
+</Callout>
+
+## The problems
+
+**`parser`: the shared parser reads dates month first.** Every tenant in #4471 writes the day
+first, so day and month swap: a 7 April reminder goes out on 4 July. This is what #4471 says it is.
+[Issue #1](https://github.com/szwedol/mega.dev-se01e03/issues/1).
+
+**`hint`: the booking-v3 form asks for the wrong order.** booking-v3 prints `MM/DD/YYYY` under its
+date field and reads what people type day first. People do what the hint says, and the booking
+swaps. Only form reports from booking-v3 tenants. The cause table on #4471 already shows this group
+as "no ticket of its own"; fixing the parser does not touch it.
+[Issue #2](https://github.com/szwedol/mega.dev-se01e03/issues/2).
+
+**`one-day move`: dates shift by one day across time zones.** No swap: Lisbon gets Tuesday,
+Toronto gets Monday, for the same meeting. The desk noted these reports as a one-day move and then
+filed them under `parser` by tenant. They are listed in `desk-notes.json`.
+[Issue #3](https://github.com/szwedol/mega.dev-se01e03/issues/3).
+
+## How the reports were counted
+
+- The export comes in overlapping pages, so some reports appear twice. Each id counts once.
+- `causeOf()` in `causes.ts` places a report by its tenant's locale and form, not by intake's tag.
+  Intake tags from the reporter's browser; it disagrees with the tenant in both directions.
+- Reports in `desk-notes.json` → `oneDayMove` are taken out of `parser` and counted as their own
+  problem.
+
+## Why it merged as one
+
+[Decision 0001](/kb/decisions/0001-dedupe-by-subject) merges on subject line. All three problems
+produce the same subjects ("Wrong day on the invite", "Date is wrong"), so subject matching cannot
+tell them apart. Its consequences only foresee the opposite case, one bug split across subjects.
+A new decision record should replace it; 0001 stays as accepted.
+
+<RenderStamp {signature} />
