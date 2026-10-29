@@ -28,6 +28,7 @@
   .status { border: 1px solid var(--line); border-radius: 99px; padding: 0 0.6rem; }
   footer { margin-top: 3rem; color: var(--muted); font-size: 0.8rem; border-top: 1px solid var(--line); padding-top: 1rem; }
   .sum { font-size: 1.1rem; }
+  .within { color: var(--muted); font-size: 0.85em; }
   aside { border-left: 4px solid var(--accent); padding: 0.5rem 1rem; margin: 1rem 0; background: var(--note-bg); }
   aside.warn { border-color: var(--warn); background: var(--warn-bg); }
   .stamp { margin: 2rem 0 0; font: 0.85rem var(--mono); color: var(--muted); }
@@ -52,12 +53,12 @@
     <p class="sum"><strong>412</strong> reports merged into #4471 · <strong>3</strong> problems</p>
     <table>
       <thead>
-        <tr><th>problem</th><th>reports</th><th>tenants</th><th>seen</th><th>issue</th></tr>
+        <tr><th>problem</th><th>reports</th><th>issue</th></tr>
       </thead>
       <tbody>
-        <tr><td><code>parser</code></td><td>374</td><td>11</td><td>2026-04-01 → 2026-10-04</td><td><a href="https://github.com/szwedol/mega.dev-se01e03/issues/1">#1</a></td></tr>
-        <tr><td><code>hint</code></td><td>33</td><td>3</td><td>2026-04-17 → 2026-09-22</td><td><a href="https://github.com/szwedol/mega.dev-se01e03/issues/2">#2</a></td></tr>
-        <tr><td><code>one-day move</code></td><td>5</td><td>5</td><td>2026-04-02 → 2026-10-04</td><td><a href="https://github.com/szwedol/mega.dev-se01e03/issues/3">#3</a></td></tr>
+        <tr><td><code>parser</code></td><td>379</td><td><a href="https://github.com/szwedol/mega.dev-se01e03/issues/1">#1</a></td></tr>
+        <tr><td><code>hint</code></td><td>33</td><td><a href="https://github.com/szwedol/mega.dev-se01e03/issues/2">#2</a></td></tr>
+        <tr><td><code>one-day move</code><span class="within"> · counted in <code>parser</code></span></td><td>5</td><td><a href="https://github.com/szwedol/mega.dev-se01e03/issues/3">#3</a></td></tr>
       </tbody>
     </table>
 
@@ -82,8 +83,8 @@
       <li>The export comes in overlapping pages, so some reports appear twice. Each id counts once.</li>
       <li><code>causeOf()</code> in <code>causes.ts</code> places a report by its tenant's locale and form, not by intake's tag.
       Intake tags from the reporter's browser; it disagrees with the tenant in both directions.</li>
-      <li>Reports in <code>desk-notes.json</code> → <code>oneDayMove</code> are taken out of <code>parser</code> and counted as their own
-      problem.</li>
+      <li>Counted the desk's way, as exported: reports in <code>desk-notes.json</code> → <code>oneDayMove</code> stay counted
+      under <code>parser</code>, where their tenant files them, and get their own row and issue as well.</li>
     </ul>
 
     <h2>Why it merged as one</h2>
