@@ -47,8 +47,8 @@
     </p>
   </header>
   <main>
-    <p><a href="/kb/incidents/4471">#4471</a> is marked known: one issue, one fix queued. Read report by report, it
-    holds three problems. The queued parser fix closes only the first one.</p>
+    <p><a href="/kb/incidents/4471">#4471</a> was marked known: one issue, one fix queued. Read report by report, it
+    holds three problems. Engineering closed #4471 on 5 October with two of them settled.</p>
 
     <p class="sum"><strong>412</strong> reports merged into #4471 · <strong>3</strong> problems</p>
     <table>
@@ -62,7 +62,19 @@
       </tbody>
     </table>
 
-    <aside class="warn">Two of the three have no fix queued. Keep #4471 open until each issue below is fixed on its own.</aside>
+    <table>
+      <thead>
+        <tr><th>problem</th><th>since #4471 closed</th><th>issue</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>parser</code></td><td>fixed: <code>fix(dates): parse dd/mm for eu locales</code></td><td><a href="https://github.com/szwedol/mega.dev-se01e03/issues/1">#1</a> closed</td></tr>
+        <tr><td><code>hint</code></td><td>won't fix: booking-v3 form retired</td><td><a href="https://github.com/szwedol/mega.dev-se01e03/issues/2">#2</a> closed, not planned</td></tr>
+        <tr><td><code>one-day move</code></td><td>not in the engineering update</td><td><a href="https://github.com/szwedol/mega.dev-se01e03/issues/3">#3</a> <strong>open</strong></td></tr>
+      </tbody>
+    </table>
+
+    <aside class="warn">#4471 is closed, but one problem in it is not. Dates that move by one day across time zones were
+    never part of the parser fix. Reports like these still belong to #3, not to #4471.</aside>
 
     <h2>The problems</h2>
     <p><strong><code>parser</code>: the shared parser reads dates month first.</strong> Every tenant in #4471 writes the day
